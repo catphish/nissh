@@ -62,6 +62,7 @@ module Nissh
           if options[:stdin]
             channel.send_data(options[:stdin])
           end
+          channel.eof!
           channel.on_data do |_,data|
             response.stdout += data
             log :debug, data.gsub(/[\r]/, ''), :tab => 4
